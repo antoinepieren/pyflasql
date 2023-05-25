@@ -14,3 +14,12 @@ class WhoisForm(FlaskForm):
         InputRequired(), Length(min=2, max=300)], render_kw={"placeholder": "Domain"})
     
     submit = SubmitField('Submit')
+
+class MetagoofilForm(FlaskForm):
+    domain = StringField(validators=[
+        InputRequired(), Length(min=2, max=300)], render_kw={"placeholder": "Domain"})
+    
+    fileTypes = StringField(validators=[
+        InputRequired(), Length(min=2, max=300)], render_kw={"placeholder": "File types list separated by commas"})
+    
+    submit = SubmitField('Submit')
