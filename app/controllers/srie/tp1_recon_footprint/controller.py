@@ -62,7 +62,7 @@ def srie_tp1_ipaddr():
     content = {"ip_address_private": "x.x.x.x", 
                "ip_address_public": "x.x.x.x",
                "cmd_ip_address_private": f"hostname -I",
-               "cmd_ip_address_public": f"To be implemented"
+               "cmd_ip_address_public": f"curl -s https://raphaelviera.fr/ismin/toolbox/my_ip.php"
                }
     # Uses get_shell_output() to execute a command in the shell and store the output in the dict.
     content["ip_address_private"] = get_shell_output(content["cmd_ip_address_private"])
