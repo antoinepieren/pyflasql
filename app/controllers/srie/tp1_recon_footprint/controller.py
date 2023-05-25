@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output, CheckIf
-from ....models.srie.tp1_recon_footprint.forms import WhoisForm, TheHarvesterForm
+from ....models.srie.tp1_recon_footprint.forms import WhoisForm, TheHarvesterForm, MaryamForm
 
 
 @login_required
@@ -130,3 +130,33 @@ def srie_tp1_theharvester():
         return render_template(url_for('blueprint.srie_tp1_theharvester')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp1_theharvester')+'.html', content=content)
+
+@login_required
+def srie_tp1_maryam():
+    """
+        Handles the logic for view/templates/srie/tp1_recon_footprint/maryam.html
+        Login is required to view this page
+
+        Print in whatever Maryam finds idk how this works
+
+        Args:
+            - domain name
+
+        Returns:
+            - rendered template view/templates/srie/tp1_recon_footprint/maryam.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": MaryamForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Gets the whatever Maryam is supposed to get
+        domain = content["form"].domain.data
+        content["command_executed"] = f"maryam -e dns_search -d {domain}"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp1_maryam')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp1_maryam')+'.html', content=content)
