@@ -77,7 +77,7 @@ def srie_tp1_whois():
         Handles the logic for view/templates/srie/tp1_recon_footprint/whois.html
         Login is required to view this page
 
-        Print in the user interface private and public IP addresses.
+        Prints information about a domain name.
 
         Args:
             - None.
