@@ -26,14 +26,14 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 {% endraw %}
 -->
 {% extends "base.html" %}
-{% block title %}SRIE > TP1 - Reconnaissance / Footprint > WHOIS{% endblock %}
+{% block title %}SRIE > TP1 - Reconnaissance / Footprint > Metagoofil{% endblock %}
 {% block content %}
 <div class="container p-5 my-5">
-    <h2 class="text-center">SRIE > TP1 - Reconnaissance / Footprint > WHOIS</h2>
+    <h2 class="text-center">SRIE > TP1 - Reconnaissance / Footprint > Metagoofil</h2>
 
     <div class="container p-5 my-5 border bg-light">
         <p class="lead">
-            WHOIS is a widely used internet service that provides information about a domain name.
+            Metagoofil is an information gathering tool designed for extracting metadata of public documents (pdf,doc,xls,ppt,docx,pptx,xlsx) belonging to a target company. Metagoofil will perform a search using Google dorks to identify and download the documents to the downloads folder.
         </p>
     </div>
 
@@ -41,8 +41,8 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
     <h3 class="mt-5 text-center">Command Used</h3>
 
     <div class="container p-5 my-5 border bg-light">
-        <p class="lead">The "whois" tool is used in the command line shell. So far it takes one parameter:</p>
-        <code>{% raw %}$ curl -s https://raphaelviera.fr/ismin/toolbox/whois/whois.php?domain={domain} {% endraw %}</code>
+        <p class="lead">The "metagoofil" tool is used in the command line shell. It takes two parameters :</p>
+        <code>{% raw %}$ metagoofil -d {domain} -t {fileTypes} -o downloads {% endraw %}</code>
     </div>
 
     <!-- Help section -->
@@ -54,13 +54,15 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
             <li class="list-group-item">
                 <h5>{domain}*</h5>
                 <p>The domain to be searched for</p>
+                <h5>{fileTypes}*</h5>
+                <p>File types to be downloaded</p>
             </li>
         </ul>
         <p>Fields marked with * are mandatory.</p>
 
 
         <h5>Command example:</h5>
-        <code>{% raw %}$ curl -s https://raphaelviera.fr/ismin/toolbox/whois/whois.php?domain=raphaelviera.fr {% endraw %}</code>
+        <code>{% raw %}$ metagoofil -d portail.emse.fr -t pdf,ppt,pptx -o downloads {% endraw %}</code>
     </div>
 
     <!-- Command Execution section -->
@@ -75,6 +77,11 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
                 {{ content["form"].domain(class="form-control") }}
             </div>
             
+            <div class="form-group mt-2">
+                <label for="{{ content['form'].fileTypes.id }}">{{ content["form"].fileTypes.label.text }}</label>
+                {{ content["form"].fileTypes(class="form-control") }}
+            </div>
+
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form> 
     </div>

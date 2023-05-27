@@ -11,8 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output, CheckIf
-from ....models.srie.tp1_recon_footprint.forms import WhoisForm, TheHarvesterForm, MaryamForm
-
+from ....models.srie.tp1_recon_footprint.forms import WhoisForm, TheHarvesterForm, MaryamForm, MetagoofilForm
 
 @login_required
 def srie_home():
@@ -77,7 +76,7 @@ def srie_tp1_whois():
         Handles the logic for view/templates/srie/tp1_recon_footprint/whois.html
         Login is required to view this page
 
-        Print in the user interface private and public IP addresses.
+        Prints information about a domain name.
 
         Args:
             - None.
@@ -130,6 +129,37 @@ def srie_tp1_theharvester():
         return render_template(url_for('blueprint.srie_tp1_theharvester')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp1_theharvester')+'.html', content=content)
+
+@login_required
+def srie_tp1_metagoofil():
+    """
+        Handles the logic for view/templates/srie/tp1_recon_footprint/metagoofil.html
+        Login is required to view this page
+
+        Downloads files hidden under a domain name
+
+        Args:
+            - None.
+
+        Returns:
+            - rendered template view/templates/srie/tp1_recon_footprint/metagoofil.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": MetagoofilForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address and number of pings from the user interface (UI)
+        domain = content["form"].domain.data
+        fileTypes = content["form"].fileTypes.data
+        content["command_executed"] = f"metagoofil -d {domain} -t {fileTypes} -o downloads"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp1_metagoofil')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp1_metagoofil')+'.html', content=content)
 
 @login_required
 def srie_tp1_maryam():
