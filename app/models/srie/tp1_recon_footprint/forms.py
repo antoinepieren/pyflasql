@@ -22,7 +22,7 @@ class MetagoofilForm(FlaskForm):
     fileTypes = StringField(validators=[
         InputRequired(), Length(min=2, max=300)], render_kw={"placeholder": "File types list separated by commas"})
     
-     submit = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 class TheHarvesterForm(FlaskForm):
     domain = StringField(validators=[

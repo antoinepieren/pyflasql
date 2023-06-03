@@ -18,3 +18,9 @@ class PingAddrForm(FlaskForm):
         NumberRange(min=1, max=100)], render_kw={"placeholder": "Number of pings"}, default=3)
     
     submit = SubmitField('Ping')
+
+class FPingForm(FlaskForm):
+    ip_address = StringField(validators=[
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress start"})
+    
+    submit = SubmitField('Scan')

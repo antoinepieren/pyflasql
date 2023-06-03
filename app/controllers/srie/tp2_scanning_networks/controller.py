@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output
-from ....models.srie.tp2_scanning_networks.forms import PingAddrForm
+from ....models.srie.tp2_scanning_networks.forms import PingAddrForm, FPingForm
 
 
 @login_required
@@ -59,3 +59,33 @@ def srie_tp2_pingaddr():
         return render_template(url_for('blueprint.srie_tp2_pingaddr')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp2_pingaddr')+'.html', content=content)
+
+@login_required
+def srie_tp2_fping():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/pingaddr.html
+        Login is required to view this page
+
+        Pings 255 IP adresses
+
+        Args:
+            - None.
+
+        Returns:
+            - rendered template view/templates/srie/tp2_scanning_networds/pingaddr.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": FPingForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address and number of pings from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"fping -s -g {ip_address}.1 {ip_address}.255"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
