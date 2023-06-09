@@ -21,6 +21,24 @@ class PingAddrForm(FlaskForm):
 
 class FPingForm(FlaskForm):
     ip_address = StringField(validators=[
-        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress start"})
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress start X.X.X"})
+    
+    submit = SubmitField('Scan')
+
+class NmapNetworkForm(FlaskForm):
+    ip_address = StringField(validators=[
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress start X.X.X"})
+    
+    submit = SubmitField('Scan')
+
+class NmapPortForm(FlaskForm):
+    ip_address = StringField(validators=[
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress"})
+    
+    submit = SubmitField('Scan')
+
+class TracerouteForm(FlaskForm):
+    ip_address = StringField(validators=[
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress"})
     
     submit = SubmitField('Scan')

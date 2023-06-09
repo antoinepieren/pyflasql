@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output
-from ....models.srie.tp2_scanning_networks.forms import PingAddrForm, FPingForm
+from ....models.srie.tp2_scanning_networks.forms import PingAddrForm, FPingForm, NmapNetworkForm, NmapPortForm, TracerouteForm
 
 
 @login_required
@@ -35,8 +35,7 @@ def srie_tp2_pingaddr():
         Handles the logic for view/templates/srie/tp2_scanning_networds/pingaddr.html
         Login is required to view this page
 
-        Print in the user interface private and public IP addresses.
-
+        Pings an address n times
         Args:
             - None.
 
@@ -63,7 +62,7 @@ def srie_tp2_pingaddr():
 @login_required
 def srie_tp2_fping():
     """
-        Handles the logic for view/templates/srie/tp2_scanning_networds/pingaddr.html
+        Handles the logic for view/templates/srie/tp2_scanning_networds/fping.html
         Login is required to view this page
 
         Pings 255 IP adresses
@@ -72,7 +71,7 @@ def srie_tp2_fping():
             - None.
 
         Returns:
-            - rendered template view/templates/srie/tp2_scanning_networds/pingaddr.html with content passed as a context variable
+            - rendered template view/templates/srie/tp2_scanning_networds/fping.html with content passed as a context variable
         """
     # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
     content = {"form": FPingForm(),
@@ -81,7 +80,7 @@ def srie_tp2_fping():
                }
     
     if content["form"].validate_on_submit():
-        # Get IP address and number of pings from the user interface (UI)
+        # Get IP address from the user interface (UI)
         ip_address = content["form"].ip_address.data
         content["command_executed"] = f"fping -s -g {ip_address}.1 {ip_address}.255"
         content["command_output"] = get_shell_output(content["command_executed"])
@@ -89,3 +88,93 @@ def srie_tp2_fping():
         return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
+
+@login_required
+def srie_tp2_nmapNetwork():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/nmapNetwork.html
+        Login is required to view this page
+
+        Uses nmap to scan the network to have a list of active devices
+
+        Args:
+            - None.
+
+        Returns:
+            - rendered template view/templates/srie/tp2_scanning_networds/nmapNetwork.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": NmapNetworkForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"nmap -T3 -sn {ip_address}.0/24"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_nmapNetwork')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_nmapNetwork')+'.html', content=content)
+
+@login_required
+def srie_tp2_nmapPort():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/nmapPort.html
+        Login is required to view this page
+
+        Uses nmap to scan a device for open ports
+
+        Args:
+            - None
+
+        Returns:
+            - rendered template view/templates/srie/tp2_scanning_networds/nmapPort.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": NmapPortForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"sudo nmap -sS -Pn {ip_address}"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_nmapPort')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_nmapPort')+'.html', content=content)
+
+@login_required
+def srie_tp2_traceroute():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/traceroute.html
+        Login is required to view this page
+
+        Does traceroute
+
+        Args:
+            - None
+
+        Returns:
+            - rendered template view/templates/srie/tp2_scanning_networds/traceroute.html with content passed as a context variable
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": TracerouteForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"traceroute {ip_address}"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_traceroute')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_traceroute')+'.html', content=content)
