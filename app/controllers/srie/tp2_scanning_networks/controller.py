@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output
-from ....models.srie.tp2_scanning_networks.forms import PingAddrForm, FPingForm
+from ....models.srie.tp2_scanning_networks.forms import PingAddrForm, FPingForm, NmapNetworkForm, NmapPortForm
 
 
 @login_required
@@ -89,3 +89,63 @@ def srie_tp2_fping():
         return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp2_fping')+'.html', content=content)
+
+@login_required
+def srie_tp2_nmapNetwork():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/nmapNetwork.html
+        Login is required to view this page
+
+        Pings 255 IP adresses
+
+        Args:
+            - network IP
+
+        Returns:
+            - list of active devices
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": NmapNetworkForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address and number of pings from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"nmap -T3 -sn {ip_address}.0/24"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_nmapNetwork')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_nmapNetwork')+'.html', content=content)
+
+@login_required
+def srie_tp2_nmapPort():
+    """
+        Handles the logic for view/templates/srie/tp2_scanning_networds/nmapPort.html
+        Login is required to view this page
+
+        Pings 255 IP adresses
+
+        Args:
+            - network IP
+
+        Returns:
+            - list of active devices
+        """
+    # Create a dict to store the formulary and the shell output. This dict is passed to the .html file.
+    content = {"form": NmapPortForm(),
+               "command_executed": "Waiting ...",
+               "command_output": "Waiting ..."
+               }
+    
+    if content["form"].validate_on_submit():
+        # Get IP address and number of pings from the user interface (UI)
+        ip_address = content["form"].ip_address.data
+        content["command_executed"] = f"sudo nmap -sS -Pn {ip_address}"
+        content["command_output"] = get_shell_output(content["command_executed"])
+        # print(content["shell_output"])  # for debug only
+        return render_template(url_for('blueprint.srie_tp2_nmapPort')+'.html', content=content)
+
+    return render_template(url_for('blueprint.srie_tp2_nmapPort')+'.html', content=content)
