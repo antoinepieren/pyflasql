@@ -26,14 +26,18 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 {% endraw %}
 -->
 {% extends "base.html" %}
-{% block title %}SRIE > TP2 - Scanning Networks > Nmap Port Scan{% endblock %}
+{% block title %}SRIE > TP2 - Scanning Networks > Ping an IP address{% endblock %}
 {% block content %}
 <div class="container p-5 my-5">
-    <h2 class="text-center">SRIE > TP2 - Scanning Networks > Nmap Port Scan</h2>
+    <h2 class="text-center">SRIE > TP2 - Scanning Networks > Ping an IP address</h2>
 
     <div class="container p-5 my-5 border bg-light">
         <p class="lead">
-            Nmap used to scan a device desc
+            Ping can be used during a penetration test to send ICMP Echo Request packets to a target system or 
+            network, and then analyze the response to gather information about the target. 
+            By sending ping requests and analyzing the responses, pentesters can determine if a host is online, 
+            assess its response time (round-trip time or RTT), and identify potential targets for further 
+            exploration or exploitation. 
         </p>
     </div>
 
@@ -41,9 +45,8 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
     <h3 class="mt-5 text-center">Command Used</h3>
 
     <div class="container p-5 my-5 border bg-light">
-        <p class="lead">The "nmap" tool is used in the command line shell. So far it takes one parameter :</p>
-        <code>{% raw %}$ sudo nmap -sS -Pn {ip_address} {% endraw %}</code>
-
+        <p class="lead">The "ping" tool is used in the command line shell. So far it takes two parameters:</p>
+        <code>{% raw %}$ ping -c {npings} {ip_address}{% endraw %}</code>
     </div>
 
     <!-- Help section -->
@@ -54,14 +57,18 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
         <ul>
             <li class="list-group-item">
                 <h5>{ip_address}*</h5>
-                <p>IP address</p>
+                <p>The IP address to ping</p>
+            </li>
+            <li class="list-group-item">
+                <h5>{npings}</h5>
+                <p>The number of times ping is run.</p>
             </li>
         </ul>
         <p>Fields marked with * are mandatory.</p>
 
 
         <h5>Command example:</h5>
-        <code>{% raw %}$ sudo nmap -sS -Pn 192.168.28.139{% endraw %}</code>
+        <code>{% raw %}$ ping -c 5 127.0.0.1{% endraw %}</code>
     </div>
 
     <!-- Command Execution section -->
@@ -74,6 +81,16 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
             <div class="form-group mt-2">
                 <label for="{{ content['form'].ip_address.id }}">{{ content["form"].ip_address.label.text }}</label>
                 {{ content["form"].ip_address(class="form-control") }}
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="{{ content['form'].usernames.id }}">{{ content["form"].usernames.label.text }}</label>
+                {{ content["form"].usernames(class="form-control") }}
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="{{ content['form'].passwords.id }}">{{ content["form"].passwords.label.text }}</label>
+                {{ content["form"].passwords(class="form-control") }}
             </div>
             
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
