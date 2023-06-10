@@ -26,14 +26,14 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 {% endraw %}
 -->
 {% extends "base.html" %}
-{% block title %}SRIE > TP2 - Scanning Networks > Nmap Port Scan{% endblock %}
+{% block title %}SRIE > TP3 - Enumeration > Enum4linux{% endblock %}
 {% block content %}
 <div class="container p-5 my-5">
-    <h2 class="text-center">SRIE > TP2 - Scanning Networks > Nmap Port Scan</h2>
+    <h2 class="text-center">SRIE > TP3 - Enumeration > Enum4linux</h2>
 
     <div class="container p-5 my-5 border bg-light">
         <p class="lead">
-            Nmap used to scan a device desc
+            enum4linux desc
         </p>
     </div>
 
@@ -41,9 +41,8 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
     <h3 class="mt-5 text-center">Command Used</h3>
 
     <div class="container p-5 my-5 border bg-light">
-        <p class="lead">The "nmap" tool is used in the command line shell. So far it takes one parameter :</p>
-        <code>{% raw %}$ sudo nmap -sS -Pn {ip_address} {% endraw %}</code>
-
+        <p class="lead">The "enum4linux" tool is used in the command line shell. So far it takes one parameter :</p>
+        <code>{% raw %}$ enum4linux -U {ip_address} {% endraw %}</code>
     </div>
 
     <!-- Help section -->
@@ -61,7 +60,7 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 
 
         <h5>Command example:</h5>
-        <code>{% raw %}$ sudo nmap -sS -Pn 192.168.28.139{% endraw %}</code>
+        <code>{% raw %}$ enum4linux -U 192.168.28.139 {% endraw %}</code>
     </div>
 
     <!-- Command Execution section -->
@@ -75,6 +74,7 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
                 <label for="{{ content['form'].ip_address.id }}">{{ content["form"].ip_address.label.text }}</label>
                 {{ content["form"].ip_address(class="form-control") }}
             </div>
+
             
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form> 
