@@ -10,4 +10,17 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, InputRequired, Length, ValidationError
 
 
+class HydraForm(FlaskForm):
+    ip_address = StringField(validators=[
+        InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Adress"})
+    
+    usernames = StringField(validators=[
+        InputRequired(), Length(min=2, max=100)], render_kw={"placeholder": "usernames"})
+    
+    passwords = StringField(validators=[
+        InputRequired(), Length(min=2, max=100)], render_kw={"placeholder": "passwords"})
+    
+    submit = SubmitField('Send')
+
+
 # to be implemented
