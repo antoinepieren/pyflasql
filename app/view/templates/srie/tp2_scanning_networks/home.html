@@ -14,6 +14,15 @@ License: check the LICENSE file.
         <p class="lead">
             Scanning a network is a fundamental practice in cybersecurity that involves actively probing and examining the target network to identify open ports, services, devices, and potential vulnerabilities.
         </p>
+        
+        <p class="lead">Network scanning is the process of probing a target network to gather as much information as possible
+            about its systems. It involves looking for live systems in the network, which can be done using various
+            tools, some of which are commonly available, while others may require more advanced techniques.
+            Once live systems are identified, the next step is to determine which ports are open or closed. By
+            analyzing how these systems respond to requests, we can gather more information about the target.
+            Additionally, based on the open ports, we can infer the possible services running on those systems.
+            This information can help us identify the type of operating system or the target itself
+        </p>
                 
     </div>
 
@@ -45,13 +54,10 @@ License: check the LICENSE file.
                 <h5><a href="{{url_for('blueprint.srie_tp2_nmapNetwork')}}" class="list-group-item-action">Nmap Network Scan</a></h5>
                 <p class="lead">
                     Nmap (“Network Mapper”) is an open source tool for network exploration and security auditing. It was
-       designed to rapidly scan large networks, although it works fine against single hosts. Nmap uses raw IP
+       designed to rapidly scan large networks. Nmap uses raw IP
        packets in novel ways to determine what hosts are available on the network, what services (application
        name and version) those hosts are offering, what operating systems (and OS versions) they are running,
-       what type of packet filters/firewalls are in use, and dozens of other characteristics. While Nmap is
-       commonly used for security audits, many systems and network administrators find it useful for routine
-       tasks such as network inventory, managing service upgrade schedules, and monitoring host or service
-       uptime.
+       what type of packet filters/firewalls are in use, and dozens of other characteristics.
 
                 </p>
             </li>
@@ -59,7 +65,7 @@ License: check the LICENSE file.
                 <h5><a href="{{url_for('blueprint.srie_tp2_nmapPort')}}" class="list-group-item-action">Nmap Port Scan</a></h5>
                 <p class="lead">
                     While Nmap has grown in functionality over the years, it began as an efficient port scanner, and that
-       remains its core function. The simple command nmap target scans 1,000 TCP ports on the host target. While
+       remains its core function. While
        many port scanners have traditionally lumped all ports into the open or closed states, Nmap is much more
        granular. It divides ports into six states: open, closed, filtered, unfiltered, open|filtered, or
        closed|filtered.

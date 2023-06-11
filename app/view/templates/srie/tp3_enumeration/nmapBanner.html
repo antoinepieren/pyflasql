@@ -33,7 +33,14 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 
     <div class="container p-5 my-5 border bg-light">
         <p class="lead">
-            nmap banner grab desc
+            -sY (SCTP INIT scan)
+            SCTP[6] is a relatively new alternative to the TCP and UDP protocols, combining most characteristics
+            of TCP and UDP, and also adding new features like multi-homing and multi-streaming. It is mostly being
+            used for SS7/SIGTRAN related services but has the potential to be used for other applications as well.
+            SCTP INIT scan is the SCTP equivalent of a TCP SYN scan. It can be performed quickly, scanning
+            thousands of ports per second on a fast network not hampered by restrictive firewalls. Like SYN scan,
+            INIT scan is relatively unobtrusive and stealthy, since it never completes SCTP associations. It also
+            allows clear, reliable differentiation between the open, closed, and filtered states.
         </p>
     </div>
 

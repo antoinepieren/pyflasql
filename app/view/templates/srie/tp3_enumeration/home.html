@@ -12,11 +12,18 @@ License: check the LICENSE file.
     <div class="container p-5 my-5 border">
         <!-- Description -->
         <p class="lead">
-            Description text. Description text. Description text. Description text.
+            In the context of cybersecurity, enumeration refers to the process of gathering information about a target system or network. It involves actively probing and exploring the target to identify potential entry points, vulnerabilities, and resources. Enumeration is a crucial step in the reconnaissance phase of a cybersecurity assessment or penetration testing.
+
         </p>
                 
         <p class="lead">
-            Description text. Description text. Description text. Description text. 
+            The primary purpose of enumeration is to gather intelligence about the target environment. By systematically analyzing various aspects of the system or network, security professionals can gain a better understanding of its structure, services, configurations, and potential weaknesses. Enumeration helps in identifying potential attack vectors, misconfigurations, outdated software, open ports, and other valuable information that can be used to exploit or secure the target.
+        </p>
+
+        <p class="lead">Enumeration
+            helps to decipher the detailed information like Hostnames, IP tables, SNMP and DNS,
+            Application, Banners, Audit configurations and service settings. The significance of
+            Enumeration is that it systematically collects details.
         </p>
     </div>
 
@@ -32,31 +39,36 @@ License: check the LICENSE file.
             <li class="list-group-item">
                 <h5><a href="{{url_for('blueprint.srie_tp3_telnet')}}" class="list-group-item-action">Telnet</a></h5>
                 <p class="lead">
-                    Telnet desc
-                </p>
+                    The telnet command is a networking protocol used for establishing an interactive
+communication session with another host via the TELNET protocol. This protocol enables a
+user to access and communicate with a remote computer as if they were physically present
+at the remote location. </p>
             </li>
             <li class="list-group-item">
                 <h5><a href="{{url_for('blueprint.srie_tp3_nmapBanner')}}" class="list-group-item-action">Nmap Banner Grab</a></h5>
                 <p class="lead">
-                    Nmap Banner Grab desc
+                    Banner grabbing mainly consists of sending requests to services in order to get
+responses which will allow us to learn their versions, it may be considered part of the OS and
+version detection process to know our target’s software and its possible vulnerabilities for
+future exploitation.
                 </p>
             </li>
             <li class="list-group-item">
                 <h5><a href="{{url_for('blueprint.srie_tp3_nmapEnum')}}" class="list-group-item-action">Nmap User Enum</a></h5>
                 <p class="lead">
-                    Nmap User Enum desc
+                   This tool use Nmap for user enumeration.
                 </p>
             </li>
             <li class="list-group-item">
                 <h5><a href="{{url_for('blueprint.srie_tp3_enum4linux')}}" class="list-group-item-action">Enum4linux</a></h5>
                 <p class="lead">
-                    Enum4linux desc
+                    Enum4linux is used to enumerate Windows and Samba hosts.
                 </p>
             </li>
             <li class="list-group-item">
                 <h5><a href="{{url_for('blueprint.srie_tp3_rpcclient')}}" class="list-group-item-action">Rpcclient</a></h5>
                 <p class="lead">
-                    Rpcclient desc
+                    Rpcclient is a Linux tool used for executing client side MS-RPC functions. 
                 </p>
             </li>
         </ol>

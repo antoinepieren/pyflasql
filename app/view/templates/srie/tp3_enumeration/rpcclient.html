@@ -33,7 +33,22 @@ Anything in this block is treated as raw text, including {{ curly braces }} and 
 
     <div class="container p-5 my-5 border bg-light">
         <p class="lead">
-            rpcclient desc
+            -U|--user=[DOMAIN\]USERNAME[%PASSWORD]
+           Sets the SMB username or username and password.
+
+           
+        </p>
+
+        <p = class="lead">
+            If %PASSWORD is not specified, the user will be prompted. The client will first check the USER
+           environment variable (which is also permitted to also contain the password separated by a %), then the
+           LOGNAME variable (which is not permitted to contain a password) and if either exists, the value is
+           used. If these environmental variables are not found, the username found in a Kerberos Credentials
+           cache may be used.
+        </p>
+
+        <p = class="lead">
+            The –U option defines a null username followed by the IP address. You will be asked for a password, just press enter to continue.
         </p>
     </div>
 
