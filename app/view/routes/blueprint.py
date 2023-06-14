@@ -9,7 +9,7 @@ from flask import Blueprint
 from ...controllers.controller import index, login, register, dashboard, logout, about
 from ...controllers.srie.tp1_recon_footprint.controller import srie_home, srie_tp1_recon_footprint, srie_tp1_ipaddr, srie_tp1_whois, srie_tp1_theharvester, srie_tp1_maryam, srie_tp1_metagoofil
 from ...controllers.srie.tp2_scanning_networks.controller import srie_tp2_scanning_networks, srie_tp2_pingaddr, srie_tp2_fping, srie_tp2_nmapNetwork, srie_tp2_nmapPort, srie_tp2_traceroute
-from ...controllers.srie.tp3_enumeration.controller import srie_tp3_enumeration, srie_tp3_telnet, srie_tp3_nmapBanner, srie_tp3_nmapEnum, srie_tp3_enum4linux, srie_tp3_rpcclient
+from ...controllers.srie.tp3_enumeration.controller import srie_tp3_enumeration, srie_tp3_telnet, srie_tp3_nmapBanner, srie_tp3_nmapEnum, srie_tp3_enum4linux#, srie_tp3_rpcclient
 from ...controllers.srie.tp4_gaining_access.controller import srie_tp4_gaining_access,srie_tp4_hydra
 from ...controllers.user_profile.controller import user_profile
 from ...controllers.toolbox.controller import toolbox_home

@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
 from ....models.sql import db, UserDB
 from ...utils import get_shell_output
-from ....models.srie.tp3_enumeration.forms import TelnetForm, NmapBannerForm, NmapEnumForm, Enum4linuxForm, RpcclientForm
+from ....models.srie.tp3_enumeration.forms import TelnetForm, NmapBannerForm, NmapEnumForm, Enum4linuxForm#, RpcclientForm
 
 @login_required
 def srie_tp3_enumeration():
