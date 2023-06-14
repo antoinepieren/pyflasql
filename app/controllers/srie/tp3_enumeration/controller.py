@@ -145,6 +145,7 @@ def srie_tp3_enum4linux():
 
     return render_template(url_for('blueprint.srie_tp3_enum4linux')+'.html', content=content)
 
+'''
 @login_required
 def srie_tp3_rpcclient():
     """
@@ -167,9 +168,10 @@ def srie_tp3_rpcclient():
     if content["form"].validate_on_submit():
         # Get IP address from the user interface (UI)
         ip_address = content["form"].ip_address.data
-        content["command_executed"] = f' rpcclient -U "" {ip_address}'
+        content["command_executed"] = f' rpcclient -U "" {ip_address} -c querydominfo'
         content["command_output"] = get_shell_output(content["command_executed"])
         # print(content["shell_output"])  # for debug only
         return render_template(url_for('blueprint.srie_tp3_rpcclient')+'.html', content=content)
 
     return render_template(url_for('blueprint.srie_tp3_rpcclient')+'.html', content=content)
+'''

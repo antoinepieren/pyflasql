@@ -54,7 +54,7 @@ blueprint.route('/srie/tp3_enumeration/telnet', methods=['GET', 'POST'])(srie_tp
 blueprint.route('/srie/tp3_enumeration/nmapBanner', methods=['GET', 'POST'])(srie_tp3_nmapBanner)
 blueprint.route('/srie/tp3_enumeration/nmapEnum', methods=['GET', 'POST'])(srie_tp3_nmapEnum)
 blueprint.route('/srie/tp3_enumeration/enum4linux', methods=['GET', 'POST'])(srie_tp3_enum4linux)
-blueprint.route('/srie/tp3_enumeration/rpcclient', methods=['GET', 'POST'])(srie_tp3_rpcclient)
+#blueprint.route('/srie/tp3_enumeration/rpcclient', methods=['GET', 'POST'])(srie_tp3_rpcclient) doesn't work because it opens a menu
 
 # TP4 - Gaining Access
 blueprint.route('/srie/tp4_gaining_access/home', methods=['GET', 'POST'])(srie_tp4_gaining_access)

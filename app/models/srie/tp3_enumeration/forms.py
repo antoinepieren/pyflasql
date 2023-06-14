@@ -36,11 +36,11 @@ class Enum4linuxForm(FlaskForm):
         InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Address"})
     
     submit = SubmitField('Scan')
-
+'''
 class RpcclientForm(FlaskForm):
     ip_address = StringField(validators=[
         InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "IP Address"})
     
     submit = SubmitField('Scan')
-
+'''
 
