@@ -23,4 +23,3 @@ class HydraForm(FlaskForm):
     submit = SubmitField('Send')
 
 
-# to be implemented
