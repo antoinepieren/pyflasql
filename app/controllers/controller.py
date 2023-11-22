@@ -49,8 +49,10 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user, remember=remember_me)
-                return redirect(url_for('blueprint.dashboard'))
-        flash('Login or password incorrect!', 'Error')
+                return redirect(url_for('blueprint.dashboard')) # login successfull
+            flash('Incorrect password !', 'Error')
+        else:
+            flash('Incorrect username !', 'Error')
     return render_template('login.html', form=form)
 
 @login_required

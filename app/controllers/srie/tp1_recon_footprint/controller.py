@@ -89,7 +89,6 @@ def srie_tp1_whois():
                "command_executed": "Waiting ...",
                "command_output": "Waiting ..."
                }
-    
     if content["form"].validate_on_submit():
         # Get IP address and number of pings from the user interface (UI)
         domain = content["form"].domain.data

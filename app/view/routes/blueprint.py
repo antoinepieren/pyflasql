@@ -11,7 +11,7 @@ from ...controllers.srie.tp1_recon_footprint.controller import srie_home, srie_t
 from ...controllers.srie.tp2_scanning_networks.controller import srie_tp2_scanning_networks, srie_tp2_pingaddr, srie_tp2_fping, srie_tp2_nmapNetwork, srie_tp2_nmapPort, srie_tp2_traceroute
 from ...controllers.srie.tp3_enumeration.controller import srie_tp3_enumeration, srie_tp3_telnet, srie_tp3_nmapBanner, srie_tp3_nmapEnum, srie_tp3_enum4linux#, srie_tp3_rpcclient
 from ...controllers.srie.tp4_gaining_access.controller import srie_tp4_gaining_access,srie_tp4_hydra
-from ...controllers.user_profile.controller import user_profile
+from ...controllers.user_profile.controller import user_profile,password_reset
 from ...controllers.toolbox.controller import toolbox_home
 from ...controllers.toolbox.wtforms.controller import toolbox_wtforms_home, toolbox_wtforms_user_reg_form, toolbox_wtforms_upload_form  
 from ...controllers.toolbox.database.controller import toolbox_database_home, toolbox_database_insert_data  
@@ -28,6 +28,7 @@ blueprint.route('/logout', methods=['GET', 'POST'])(logout)
 
 # User Profile
 blueprint.route('/user_profile/user_profile', methods=['GET', 'POST'])(user_profile)
+blueprint.route('/user_profile/password_reset', methods=['GET', 'POST'])(password_reset)
 
 # SRIE
 blueprint.route('/srie/home', methods=['GET', 'POST'])(srie_home)
